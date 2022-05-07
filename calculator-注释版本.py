@@ -1,3 +1,4 @@
+"""增加了可以连续计算的功能，之前版本计算器无法连续计算"""
 from tkinter import *
 
 root = Tk()  # Create a window创建主窗口
@@ -16,9 +17,12 @@ def calculate():  # 执行计算并显示结果
 # 获取按钮上的值并且要追加到显示区上，因为如果不追加到显示区，那么之后的eval函数无法进行计算
 def show(buttonString):
     content = equ.get()
+    print(content + '$')
     if content == "0":
         content = ""
-    # 上面三行语句是为了让显示区之前显示的0变成空字符串，然后显示新的点击的数字
+        # 上面三行语句是为了让显示区之前显示的0变成空字符串，然后显示新的点击的数字
+    elif '\n' in content:
+        content = content.split('\n')[-1]
     equ.set(content + buttonString)
 
 
